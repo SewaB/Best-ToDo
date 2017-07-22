@@ -1,0 +1,35 @@
+.selected{
+	color:#555 !important;
+	background-color: #e7e7e7 !important;
+}
+.search-bar {
+  margin:20px;
+}
+
+.search-bar input {
+  width:200px;
+  margin-left:10px;
+  margin-top:10px;
+  border:solid black 1px;
+  border-radius:3px;
+}
+
+.signout{
+  background-color: #f8f8f8;
+  margin-top:10px;
+}
+.addBtn{
+  float:right;
+  background-color: #f8f8f8;
+}
+.input-group{
+  margin-top:15px;
+  width:380px;
+/*  position:relative;
+  left:30%;*/
+}
+.input-group .form-control:first-child{
+  width:80%;
+  border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
