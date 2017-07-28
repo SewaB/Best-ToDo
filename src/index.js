@@ -4,13 +4,14 @@ import Login from './Login';
 import Registration from './Registration';
 import ToDo from './ToDo';
 import './index.css';
-import firebase from 'firebase'
+import firebase from 'firebase';
+import 'toastr/build/toastr.min.css';
 import {
   BrowserRouter as Router,
   Route,
   NavLink
-} from 'react-router-dom'
-import createBrowserHistory from 'history/createBrowserHistory'
+} from 'react-router-dom';
+import createBrowserHistory from 'history/createBrowserHistory';
 
 const history = createBrowserHistory()
 

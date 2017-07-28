@@ -8,14 +8,16 @@ class Registration extends Component {
     this.state = {
       email: '',
       password: '',
+      user:''
     }
   }
   
-     componentWillMount() {
+ componentWillMount() {
     firebase.auth().onAuthStateChanged((user) => {
       if(user) { 
         this.props.history.push('/ToDo')
       } 
+      console.log(user)
    });
   }
 

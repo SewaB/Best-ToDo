@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { Button } from 'react-bootstrap'
 import firebase from 'firebase';
 import moment from 'moment';
-import TodoList from './todoList'
+import toastr from 'toastr';
+import Task from './CompleteTask'
 
 class ToDo extends Component {
   constructor(props){
     super(props)
+
     this.onInputChange = this.onInputChange.bind(this)
     this.state = {
       user:'',
@@ -14,53 +16,94 @@ class ToDo extends Component {
       list:[],
       text:'',
       added:'',
+      total:'',
+      key:'',
     }
   }
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({user});
-      }else {
-        this.props.history.push('/Login')
+    if (user) {
+    const {uid} = user
+    firebase.database().ref('Users/' + uid).once('value')
+     .then(snapshot=>{
+      if(snapshot.val()){
+            this.setState({
+            user, 
+            list:snapshot.val().list || [],
+          })
+        } else {
+        this.setState({user})
       }})
+    }else {
+      this.props.history.push('/Login')
+    }
+   })
   }
 
   signOut(){
    	firebase.auth().signOut()
   }
-
   onInputChange(e){
     this.setState({todo:e.target.value});
   }
 
   addToDo(e){
-    e.preventDefault();
+    const { uid } = this.state.user;
     const newList = {
       todo: this.state.todo,
-      id: Date.now()
+      added: moment().format('DD MMM YYYY')
     };
-    this.setState((prevState) => ({
-      list: prevState.list.concat(newList),
-      todo: '',
-      added:moment().format('DD MMM YYYY'),
-    }));
-    const { uid } = this.state.user
-    firebase.database().ref('List/')
-    .push({ 
-      todo:this.state.todo,
-      addAt:moment().format('DD MMM YYYY hh:mm a'),
-      user:uid,
+    let list = this.state.list.concat(newList)
+
+    firebase.database().ref('Users/' + uid)
+    .update({
+      list,
     });
+       
+    this.setState((prevState) => ({
+      list,
+      todo:'',
+    }));
+
   }
+
+  doneTask(){ 
+   toastr.success('Hell Yeah!!!')
+  }
+  deleteTask(){
+  
+   toastr.error('Hell No!!!')
+  }
+
+  addList(){
+    return(
+      <div className="ul">
+      <ul type="none">
+        {this.state.list.map((item,key) => (
+          <li className="li" key={key}>
+             <b>{item.added + item.todo}</b>
+          <div className="done">
+            <img src='/check-128.png' width="32px" height="32px" alt="pic" onClick={()=>this.doneTask()} />
+            <img src='/Close-128.png' width="32px" height="32px" alt="pic" onClick={()=>this.deleteTask()}/>
+            </div>  
+          </li>
+       ))}
+      </ul>
+      </div>
+      )
+    }
+
   render() {
-   	let show;
-  	if(this.state.user){
+  	let show;
+    if(this.state.user){
   		show = <Button className="signout" onClick={()=>this.signOut()}> Sign out </Button>
     } 
+
     return (
       <div>
         <label  className="control-label">What are you gonna do now? I hope, Keep rollig,rolling,rolling!</label>
+        <Task />
           <div className="input-group">
             <input 
             type="text" 
@@ -73,8 +116,9 @@ class ToDo extends Component {
             <Button className="addBtn" onClick={()=>this.addToDo()}>Add</Button>
           </div>
         <div>
-          <TodoList list={this.state.list} added={this.state.added} />
+          {this.addList()}
     		  {show}
+      
         </div>
      </div>
     );

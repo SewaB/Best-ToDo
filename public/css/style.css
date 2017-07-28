@@ -1,80 +1,92 @@
-#root{
-  margin-top:0!important;
-  position:relative;
-  margin:0px;
-  z-index:99;
-}
-.selected{
-  color:#555 !important;
-  background-color: #e7e7e7 !important;
-}
-.search-bar {
-  margin:20px;
-}
 
-label{
-  color:white;
-}
-.search-bar input {
-  width:200px;
-  margin-left:10px;
-  margin-top:10px;
-  border:solid black 1px;
-  border-radius:3px;
-}
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
 
-.signout{
-  background-color: #f8f8f8;
-  margin-top:10px;
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
 }
-.addBtn{
-  float:right;
-  background-color: #f8f8f8;
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
 }
-.input-group{
-  margin-top:15px;
-  width:380px;
-  margin-bottom:10px;
-/*  position:relative;
-  left:30%;*/
+body {
+    line-height: 1;
 }
-.input-group .form-control:first-child{
-  width:80%;
-  border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
+ol, ul {
+    list-style: none;
 }
-.done{
-  float:right;
-  margin:auto;
+blockquote, q {
+    quotes: none;
 }
-.ul{
-  color:white;
-  margin-top:5px;
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
 }
-.li{
-  height: 32px;
-  max-width: 50%;
-}
-p{
-  min-width: 100px;
-   max-width: 480px;
-  font-size:16px;
-}
-.alert {
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-  }
-  .alert-success {
-    color: #3c763d;
-    background-color: #dff0d8;
-    border-color: #d6e9c6;
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 
 
+/* Basic
+*/
 
+html, body {
+    width:100%;
+    height:100%;
+    font-family:"Roboto";
+    font-weight:300;
+}
+
+body * {
+    font-family:"Roboto";
+}
+
+h1 {
+    font-size:200%;
+}
+
+h2 {
+    font-size:170%;
+}
+
+h3 {
+    font-size:150%;
+}
+
+h4 {
+    font-size:130%;
+}
+
+h5 {
+    font-size:110%;
+}
+
+h6 {
+    font-size:90%;
+}
 
 .backwrap {
     background: #113243; /* Old browsers */
@@ -89,12 +101,12 @@ p{
     z-index:1;
 }
 
-/*.wrapper {
+.wrapper {
     margin-top:0!important;
     position:relative;
     margin:0px;
     z-index:99;
-}*/
+}
 
 .content {
     background-color:#fff;
@@ -183,6 +195,7 @@ p{
 */
 
 .container {
+    margin-top: 16px;
     margin-right: auto;
     margin-left: auto;
     padding-right: 15px;
